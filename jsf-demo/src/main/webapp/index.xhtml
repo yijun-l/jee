@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>JSF Debug Test</title>
+</h:head>
+<h:body>
+    <h2>JSF Remote Debug Test</h2>
+
+    <h:form id="testForm">
+        <h:outputLabel for="inputName" value="Name: " />
+        <h:inputText id="inputName" value="#{helloBean.name}" />
+
+        <!-- click the button to trigger HelloBean.submit() -->
+        <h:commandButton value="Click to Debug" action="#{helloBean.submit}" />
+
+        <br/><br/>
+        <h:outputText id="output" value="#{helloBean.message}" style="color: blue; font-weight: bold;" />
+    </h:form>
+</h:body>
+</html>

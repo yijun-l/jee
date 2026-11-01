@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.yijun_l</groupId>
+    <artifactId>jsf-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- Package as a WAR file for WildFly application server deployment -->
+    <packaging>war</packaging>
+
+    <properties>
+        <!-- Target JDK 11 compiler and runtime environment compliance -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Java EE 8 Web API Dependency -->
+        <!-- Scope is 'provided' to utilize WildFly's built-in JSF, CDI, and Servlet containers and prevent class collisions -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>8.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Define the final output artifact name as jsf-demo.war -->
+        <finalName>jsf-demo</finalName>
+        <plugins>
+            <!-- Maven WAR Plugin configuration -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <!-- Allow successful builds even if web.xml is omitted in modern Java EE configuration -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- WildFly Maven Plugin for seamless deployment to WildFly 24 running on JDK 11 -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>3.0.2.Final</version>
+                <configuration>
+                    <hostname>192.168.65.29</hostname>
+                    <port>9990</port>
+                    <username>admin</username>
+                    <password>Avaya123$</password>
+                    <filename>jsf-demo.war</filename>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
