@@ -93,3 +93,23 @@ When the server runs, it successfully loads and runs the app:
 [Server] - Invoking service() method...
 [App]    - Hello from App!
 ```
+
+## Evolved Application Server
+
+A real application server improves on the minimal design in three ways:
+
+1. **Class Isolation**: Loads apps with a custom `ClassLoader` so app files stay separate from the server.
+2. **Lifecycle Control**: Manages the full component life cycle (`init() -> service() -> destroy()`).
+3. **Fast Request Dispatch**: Uses worker threads for concurrency and pre-cached servlet instances instead of slow, per-request reflection.
+
+### Class Diagram
+
+The standard specification decouples the user app from server internals.
+
+<img src="img/1-2-class_diagram.png" alt="class_diagram" width="800">
+
+### Sequence Diagram
+
+How the server starts, serves requests, and shuts down:
+
+<img src="img/1-2-sequence_diagram.png" alt="sequence_diagram" width="800">
