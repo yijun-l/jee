@@ -1,5 +1,6 @@
 package io.github.yijunl.helloservlet;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,5 +33,23 @@ public class HelloServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+
+    @Override
+    public void init() throws ServletException {
+        System.out.println("[HelloServlet] Initialized");
+        super.init();
+    }
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("[HelloServlet] service() - Dispatching()");
+        super.service(req,resp);
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("[HelloServlet] Destroyed");
+        super.destroy();
     }
 }
