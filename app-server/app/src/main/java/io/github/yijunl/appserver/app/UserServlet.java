@@ -7,16 +7,16 @@ import io.github.yijunl.appserver.spec.HttpServlet;
 public class UserServlet extends HttpServlet{
     @Override
     public void init(){
-        System.out.println("[App] - invoke init() for initialization...");
+        System.out.println("[UserServlet] - invoke init() for initialization...");
     }
 
     @Override
     protected void doGet(HttpRequest req, HttpResponse resp) throws Exception{
-        resp.writeHtml("<h1>Hello from App!</h1><p>Path: " + req.getPath() + "</p>");
+        resp.writeHtml("<h1>Hello from UserServlet!</h1><p>Path: " + req.getPath() + "</p>");
     }
 
     @Override
     public void destroy(){
-        System.out.println("[App] - invoke destroy() for resource release...");
+        System.out.println("[UserServlet] - invoke destroy() for resource release...");
     }
 }
